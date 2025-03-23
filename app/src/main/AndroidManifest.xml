@@ -1,0 +1,68 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">  <!-- xmlns:android attribute defines the XML namespace for Android specific attributes -->
+
+<!--
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+-->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!-- Application level settings -->
+    <!-- The android:name attribute specifies the custom Application class for an app. This class is typically used for initializing global app state  -->
+    <!-- The android:allowBackup this prevents users from backing up app data (useful for sensitive apps). Change it to "true" for backup for backup support -->
+    <!-- The android:icon sets the app’s main icon -->
+    <!-- The android:roundIcon it provides a separate round icon for devices that support adaptive icons -->
+    <!-- android:label the apps display name -->
+    <!-- android:theme defines the app's global theme -->
+    <application android:name=".app.PriceDispersionApplication"
+                 android:allowBackup="false"  
+                 android:icon="@mipmap/ic_launcher"  
+                 android:roundIcon="@mipmap/ic_launcher_round"
+                 android:label="@string/app_name"
+                 android:theme="@style/AppTheme">  
+
+        <!-- An activity represents a single screen with a user interface -->
+        <!-- The android:name attribute specifies the fully qualified name of the activity class that implements the activity -->
+        <!-- The android:label: Defines the title of the activity (e.g., the text displayed in the action bar) -->
+        <!-- 
+             The android:exported: Determines whether other apps can launch this activity. 
+             If the attribute is set to "true", then other apps can start the activity (e.g., via an intent).
+             If the attribute is set to "false", then other apps cannot start the activity. 
+             In your case, it’s set to true because the launcher activity (the first screen users see) must be exported.          
+        -->
+        <activity android:name=".ui.main.MainActivity" 
+                  android:label="@string/label"
+                  android:exported="true"> <!-- This can't be false. When you tab the icon on the mobile phone you'll get the message that app is not installed -->
+
+                 <!-- An intent filter specifies the types of intents that an activity, service, or broadcast receiver can respond to. -->
+                 <intent-filter>
+                        <action android:name="android.intent.action.MAIN"/> <!-- This indicates that MainActivity is the entry point of your app. When the user launches the app, this activity will be started -->
+                        <category android:name="android.intent.category.LAUNCHER"/> <!-- This specifies that the activity should be listed in the system’s app launcher. Without this, your app won’t appear in the list of installed apps, and users won’t be able to launch it -->
+                </intent-filter>
+
+                <!-- 
+                    The MainActivity is the entry point of this app, and adding the <intent-filter> tags in the AndroidManifest.xml 
+                    file is essential to make it the launcher activity. 
+                    This ensures that when users tap your app’s icon, MainActivity is the first screen they see
+                -->
+        </activity>
+
+        <activity android:name=".ui.extra.RequestActivity"
+                  android:exported="false"
+                  android:label="@string/label_request_activity">
+                  <intent-filter>
+                        <action android:name="android.speech.action.VOICE_SEARCH_HANDS_FREE"/>
+                        <category android:name="android.intent.category.DEFAULT"/>
+                  </intent-filter>
+        </activity>
+                 
+    </application>
+
+</manifest>
+
+

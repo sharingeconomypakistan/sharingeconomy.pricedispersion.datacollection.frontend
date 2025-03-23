@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO Work on it  -->
+<!-- I took it out from below because I was getting warning that namespace declaration is never used -->
+<!-- xmlns:tools="http://schemas.android.com/tools" -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@color/dodgerblue"
+                tools:context=".ui.main.MainActivity">
+
+                <TextView android:id="@+id/tv_data_Net"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/gps_inactive_message"
+                          android:visibility="visible" />
+
+                <Spinner  android:id="@+id/spinner_below_tv_data_Net"
+                          android:layout_width="@dimen/d0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/tv_data_Net"
+                          android:layout_alignParentStart="true" />
+
+                <TextView android:id="@+id/tv_data_Gps"
+                          android:layout_below="@id/spinner_below_tv_data_Net"
+                          android:layout_alignParentStart="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/gps_inactive_message"
+                          android:visibility="visible" />
+
+                <TextView android:id="@+id/heading_of_business_types_spinner"
+                          android:layout_below="@id/tv_data_Gps"
+                          android:layout_alignParentStart="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/heading_of_business_types_spinner_text"
+                          android:visibility="visible" />
+
+                <!-- Below  at start of heading_of_business_type_spinner -->
+                <Spinner  android:id="@+id/spinner_below_heading_of_business_types_spinner"
+                          android:layout_width="@dimen/d0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@+id/heading_of_business_types_spinner"
+                          android:layout_alignParentStart="true" />
+    
+                <Spinner  android:id="@+id/business_types_spinner"
+                          android:layout_below="@id/tv_data_Gps"
+                          android:layout_alignParentEnd="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" />
+
+                <!-- Below and at start of business_types_spinner -->
+                <!-- android:layout_width="@dimen/d0dp" -->
+                <Spinner  android:id="@+id/spinner_below_business_types_spinner"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/business_types_spinner"
+                          android:visibility="invisible"
+                          android:layout_alignParentEnd="true" />
+
+                <TextView android:id="@+id/business_name_text_view"
+                          android:layout_below="@id/spinner_below_heading_of_business_types_spinner"
+                          android:layout_alignParentStart="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/heading_of_business_name_text_view"
+                          android:visibility="visible" />
+
+                <!--
+                    android:layout_marginTop="120dp"
+                    android:layout_marginStart="30dp"
+                -->
+                <EditText android:id="@+id/business_name_edit_text"
+                          android:layout_below="@id/spinner_below_business_types_spinner"
+                          android:layout_toEndOf="@id/business_name_text_view"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:hint="@string/hint_of_business_name_text_view"
+                          android:background="@drawable/rounded_edit_text"
+                          android:inputType="textPersonName"
+                          android:layout_marginStart="30dp"
+                          android:visibility="visible" />
+
+                <!-- android:layout_below="@id/business_name_edit_text" -->
+                <Button android:id="@+id/recording_button"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/start_recording_text" />
+
+                <!-- android:layout_toEndOf="@id/business_name_text_view" -->
+                <!--  android:layout_below="@id/business_name_edit_text" -->
+                <Button android:id="@+id/submit_button"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/text_of_submit_button"
+                        android:textAlignment="center"
+                        android:layout_marginVertical="@dimen/d30dp" />
+
+</RelativeLayout>
+
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:layout_gravity="center"
+              android:background="#00f0f0" android:visibility="visible"
+              tools:visibility="visible">
+
+</LinearLayout>
+-->
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:visibility="visible">
+</LinearLayout>
+-->
+
+

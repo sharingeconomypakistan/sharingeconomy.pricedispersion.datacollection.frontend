@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">Sharing Economy PAKISTAN(new)</string>
+    <string name="app_message">Good, its changed</string>
+    <string name="card1_button_text">Login</string>
+    <string name="label">SharingEconomy(price dispersion), data collection app</string>
+
+    <string name="gps_inactive_message"><b>Location services are turned off, please turn them on</b>.</string>
+    <string name="gps_coordinates_are"><b>GPS coordinates are</b>&#8230;</string>
+    <string name="current_net_coordinates_are">Current NETWORK_PROVIDER coordinates = <b>lat</b>: <b>%1$f</b>, <b>long</b>: <b>%2$f</b></string>
+    <string name="current_gps_coordinates_are">Current GPS_PROVIDER coordinates = <b>lat</b>: <b>%1$f</b>, <b>long</b>: <b>%2$f</b></string>
+    <string name="heading_of_business_types_spinner_text"><b>Business type:</b></string>
+    <string name="heading_of_business_name_text_view"><b>Business name:</b></string>
+    <string name="hint_of_business_name_text_view"><b>Enter business here...</b></string>
+    <string name="text_of_submit_button"><b>Submit</b></string>
+    <string name="label_request_activity">SharingEconomy, server reply screen</string>
+    <string name="start_recording_text">Start Recording</string>
+    <string name="stop_recording_text">Stop Recording</string>
+
+    <string-array name="business_types_string_array">
+        <item>Grocer</item>
+        <item>Greengrocer</item>
+        <item>Pharmacy</item>
+        <item>Bakery</item>
+        <item>Dairy Outlet</item>
+        <item>Superstore</item>
+        <item>Tyre Repair</item>
+        <item>Auto Mechanic</item>
+    </string-array>
+</resources>
