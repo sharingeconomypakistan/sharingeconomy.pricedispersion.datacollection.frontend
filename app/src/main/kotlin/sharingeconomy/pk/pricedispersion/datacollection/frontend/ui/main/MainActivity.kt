@@ -148,6 +148,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, On
         // This will be used to pass data and start the RequestActivity when needed.
         intentRequestActivity = Intent(PriceDispersionApplication.getApplicationContext(), RequestActivity::class.java)
 
+        intentRequestActivity.putExtra(DATA_DIRECTORY_ABSOLUTE_PATH_EXTRA, dataDirectory.absolutePath + "/")
+
         // Initialize the "start recording" button by finding its reference in the layout
         recordingButton = findViewById(R.id.recording_button)
 

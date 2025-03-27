@@ -23,6 +23,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 
+import java.io.File
 import java.net.URLEncoder
 
 // Import the required resources from the application
@@ -37,6 +38,10 @@ import sharingeconomy.pk.pricedispersion.datacollection.frontend.R
  */
 class RequestActivity : AppCompatActivity(), /* This interface is implied to be here. You can remove and it would still work */ ActivityCompat.OnRequestPermissionsResultCallback {
 
+    // ********************************************* //
+    //  Data directory where sound files get stored  //
+    // ********************************************* //
+    private lateinit var absolutePathToDataDir: String
     private lateinit var businessNameString: String
     private lateinit var businessTypeString: String
     // A variable to hold an intent, which may be used to pass data between activities
@@ -44,7 +49,9 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
     private lateinit var locationGps: Location
     private lateinit var locationNet: Location
     private lateinit var replyTextView: TextView
-
+    // ******************************************************************************* //
+    //  File name of a sound file, each of such files is stored in the data directory  //
+    // ******************************************************************************* //
     private var soundFileName: String? = null
 
     /**
@@ -65,10 +72,21 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
         businessNameString = intentRequestActivity.getStringExtra(BUSINESS_NAME_STRING_EXTRA)
         businessTypeString = intentRequestActivity.getStringExtra(BUSINESS_TYPE_STRING_EXTRA)
 
+        // ************************************************************************************************************************* //
+        //  It is a fully qualified path, you just need to appemed the name of the file to get the complete path to the sound file.  //
+        //  The word qualified already suggests that the paths are made of many parts, and what we get here is the final outcome     //
+        // ************************************************************************************************************************* //
+        absolutePathToDataDir = intentRequestActivity.getStringExtra(DATA_DIRECTORY_ABSOLUTE_PATH_EXTRA)
+
         locationGps = intentRequestActivity.getParcelableExtra(LOCATION_DATA_EXTRA_GPS)
         locationNet = intentRequestActivity.getParcelableExtra(LOCATION_DATA_EXTRA_NET)
 
+        // **************************** //
+        //  The name of the sound file  //
+        // **************************** //
         soundFileName = intentRequestActivity.getStringExtra(SOUND_FILE_NAME_STRING_EXTRA)
+
+        Log.i("RequestActivity", "YES -> " + absolutePathToDataDir + soundFileName)
 
         replyTextView = findViewById(R.id.textview_to_show_reply)
 
