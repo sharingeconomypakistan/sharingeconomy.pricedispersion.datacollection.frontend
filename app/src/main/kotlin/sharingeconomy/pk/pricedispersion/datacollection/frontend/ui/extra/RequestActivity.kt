@@ -28,6 +28,7 @@ import java.net.URLEncoder
 
 // Import the required resources from the application
 import sharingeconomy.pk.pricedispersion.datacollection.frontend.app.PriceDispersionApplication
+import sharingeconomy.pk.pricedispersion.datacollection.frontend.controller.MultiPartRequest
 import sharingeconomy.pk.pricedispersion.datacollection.frontend.model.*
 import sharingeconomy.pk.pricedispersion.datacollection.frontend.R
 
@@ -42,6 +43,7 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
     //  Data directory where sound files get stored  //
     // ********************************************* //
     private lateinit var absolutePathToDataDir: String
+
     private lateinit var businessNameString: String
     private lateinit var businessTypeString: String
     // A variable to hold an intent, which may be used to pass data between activities
@@ -93,6 +95,50 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
         // Create a new request queue for handling network requests
         val q = Volley.newRequestQueue(PriceDispersionApplication.getApplicationContext())
 
+        /* **************************************************************************** */
+        /* Multipart request                                                            */
+        /* **************************************************************************** */
+        /*val multiPartRequest = object : MultiPartRequest(SERVER_URL,
+            Response.Listener { response ->
+                // Handle the response data
+            },
+            Response.ErrorListener { error ->
+                // Handle errors
+            }) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["description"] = "Voice data"
+                return params
+            }
+
+            override fun getByteData(): Map<String, DataPart> {
+                val params = HashMap<String, DataPart>()
+                params["file"] = DataPart(soundFileName, getFileDataFromUri(absolutePathToDataDir), "video/3gpp") // media/format
+                return params
+            }
+        }*/
+        // The .3gp file
+        val audioFile = File(absolutePathToDataDir, soundFileName)
+        // Metadata (optional)
+        val params = mapOf(
+            "title" to "Meeting Recording",
+            "duration" to "120"  // in seconds
+        )
+        val multiPartRequest = MultiPartRequest(url = MULTIPART_SERVER_URL, params = params, audioFile = audioFile, fileFieldName = "audio",
+            Response.Listener { response ->
+                Log.d("AudioUpload", "Success: $response")
+                replyTextView.text = "${response}"
+                // Handle server response (e.g., JSON confirmation)
+            }, Response.ErrorListener { error ->
+                Log.e("AudioUpload", "Error: ${error.message}")
+                replyTextView.text = "${error.message}"
+                // Handle VolleyError (timeout, server error, etc.)
+            }
+        )
+        /* **************************************************************************** */
+        /* Multipart request ends here                                                  */
+        /* **************************************************************************** */
+
         val jasonArrayRequest = object : JsonArrayRequest(Method.POST, SERVER_URL, null, Response.Listener {
 
             Log.i("RequestActivity", "Response -> $it")
@@ -109,6 +155,7 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
                 message = message + "&" + "Address.GpsLng=" + locationGps.longitude.toString()
                 message = message + "&" + "Address.NetLat=" + locationNet.latitude.toString()
                 message = message + "&" + "Address.NetLng=" + locationNet.longitude.toString()
+                message = message + "&" + "Address.DataDirectory=" + absolutePathToDataDir.toString()
                 if (soundFileName != null)
                 {
                     message += "&Address.SoundFileName=${soundFileName}"
@@ -124,6 +171,7 @@ class RequestActivity : AppCompatActivity(), /* This interface is implied to be 
         }
 
         q.add(jasonArrayRequest)
+        q.add(multiPartRequest)
     }
 
     /**

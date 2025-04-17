@@ -147,7 +147,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, On
         // Initialize an intent to navigate to RequestActivity
         // This will be used to pass data and start the RequestActivity when needed.
         intentRequestActivity = Intent(PriceDispersionApplication.getApplicationContext(), RequestActivity::class.java)
-
+        // /////////////////////////////////////////////////////////////////////////////////////////// //
+        //  Pass intent data which is an absolute path to the directory where sound files get stored   //
+        // /////////////////////////////////////////////////////////////////////////////////////////// //
         intentRequestActivity.putExtra(DATA_DIRECTORY_ABSOLUTE_PATH_EXTRA, dataDirectory.absolutePath + "/")
 
         // Initialize the "start recording" button by finding its reference in the layout

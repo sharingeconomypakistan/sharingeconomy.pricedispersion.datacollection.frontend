@@ -37,6 +37,7 @@ const val SPEECH_REQUEST_CODE = 0
 //const val SERVER_URL = "http://192.168.100.17:3968/Dispersion/Append"
 
 const val SERVER_URL = "http://192.168.100.17:3968/data.html"
+const val MULTIPART_SERVER_URL = "http://192.168.100.17:3968/multipart.html"
 
 //const val SERVER_URL = "http://192.168.100.16:5000/Addresses/Create"
 
